@@ -1,12 +1,13 @@
 ---
 title: "Crossmodal - instruction file"
-author: "Laura Bock Paulsen"
+author: "Laura Bock Paulsen - edits Sara Kristensen"
 date: "9/9/2022"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE) 
+setwd('.')
 ```
 
 ```{r}
@@ -33,14 +34,29 @@ First of all, you need to download the data from the Google drive folder: **http
 ### Load data
 Load in the data.
 ```{r}
+aud <- read_bulk(
+  directory = 'data_aud/',
+  fun = read_csv,
+  col_types = cols()  # suppresses the annoying column specifications (not needed to run)
+  )
 
+vis <- read_bulk(
+  directory = 'data_vis/',
+  fun = read_csv,
+  col_types = cols()
+  )
+
+head(aud)
 ```
 
 Hint: you can use read_bulk() from the readbulk package to load the different csv files into one dataframe (one df for vision, one for audition). 
 
 
 ### Discussion
-Before you start looking at the data, discuss what predictions you have and why. 
+Before you start looking at the data, discuss what predictions you have and why.
+- Prediction when the participants fail the reaction time is slower for the next trial, due to the risk of mistaken
+- The accuracy is lower for incongruent stimuli trials.
+- Does attention matter for the accuracy for the congruency stimuli in the two experiment? Visual versus auditory attention
 
 
 # Investigation and preperation of the data
@@ -50,25 +66,40 @@ To begin with try to get an overview of the data by answering the following ques
 
 What variables do we have? 
 ```{r}
-
+pacman::p_load(janitor)
+compare_df_cols(aud,vis)
+vis$version <- recode(vis$version,'auditory'='vision')
 ```
 
 Which variables are we interested in? 
+- reaction time
+- congruency
+- accuracy
+- subject
+- time_elapsed
 
 Are the variables in the right format (e.g., factor, numeric)? If they are not, make sure they are.
 ```{r}
+vis$subject <- as.factor(vis$subject)
+vis$congruency <- as.factor(vis$congruency)
+aud$subject <- as.factor(aud$subject)
+aud$congruency <- as.factor(aud$congruency)
 
+compare_df_cols(vis,aud)
 ```
 
 How many participants do we have in each condition?
 ```{r}
-
+length(unique(vis$subject))
+length(unique(aud$subject))
+#16 versus 16
 ```
 
 
 Create new dataframes that only contains the correct trials. The dataframes with both correct and incorrect trials will be used in the last part of the exercise, so do not overwrite this. 
 ```{r}
-
+viscor <- subset(vis,accuracy=='TRUE')
+audcor <- subset(aud,accuracy=='TRUE')
 ```
 
 
