@@ -11,22 +11,37 @@ The documentation for the package can be found here: <https://www.rdocumentation
 
 Use this page to solve the following steps by finding and applying appropriate mousetrap functions. Also, writing ?function_name() in the console is great way of reading about the function in question.
 
+<<<<<<< HEAD
 Call me for help whenever you get stuck (or take a quick look in the solutions file) :-)
+=======
+Call me for help whenever you get stuck (or take a quick look in the solutions file) :D
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 
 ### Install packages and load in the data
 ```{r}
 # loading packages
+<<<<<<< HEAD
 pacman::p_load(mousetrap, tidyverse, ggplot2, gridExtra)
 
 # loading in data
 d <- read.csv('example_data/subject-98.csv')
 d3 <- read.csv('example_data/subject-3.csv')
+=======
+pacman::p_load(mousetrap, tidyverse)
+
+# loading in data
+d <- read_csv('example_data/subject-3.csv')
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 ```
 
 ### Turn the data into a mousetrap object
 ```{r}
+<<<<<<< HEAD
 m <- mousetrap::mt_import_mousetrap(d)
 m3<- mousetrap::mt_import_mousetrap(d3)
+=======
+m <- mt_import_mousetrap(d)
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 ```
 Take a moment to look at the structure that it created. What are the elements, what information does it provide?
 
@@ -35,7 +50,10 @@ Try to understand what the lines mean and how to “read” the graph. What seem
 ```{r}
 # initial plot
 mt_plot(m)
+<<<<<<< HEAD
 mt_plot(m3)
+=======
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 
 # specified
 mt_plot(data = m, use = 'trajectories')
@@ -45,7 +63,10 @@ mt_plot(data = m, use = 'trajectories')
 The demo-experiment had different trial types for which we have different predictions. Make a plot that distinguishes these two conditions, e.g. by different colors. 
 ```{r}
 mt_plot(m, color = 'trial_type')
+<<<<<<< HEAD
 mt_plot(m3,color='trial_type')
+=======
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 ```
 
 
@@ -67,6 +88,7 @@ mt_plot(
   )
 
 # turns the data upside down, so it resembles the actual mouse tracking task
+<<<<<<< HEAD
 
 # align the mouse trajectories to one side
 m3 <- mt_remap_symmetric(
@@ -81,18 +103,25 @@ mt_plot(
   use = 'trajectories',
   color = 'trial_type'
   )
+=======
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 ```
 
 ### Plot timestamps by xpos
 The standard plotting function shows x and y coordinates. Modify it so you plot timestamps by xpos. What do you see? What is this line in the beginning?
 ```{r}
+<<<<<<< HEAD
 a <- mt_plot(
+=======
+mt_plot(
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
   m, 
   x = 'timestamps', # modifying the x-axis to plot timestamps
   y = 'xpos',       # modifying the y-axis to plot the xpos
   use = 'trajectories',
   color = 'trial_type' 
 )
+<<<<<<< HEAD
 
 b <- mt_plot(
   m3, 
@@ -103,6 +132,8 @@ b <- mt_plot(
 )
 
 ab <- gridExtra::grid.arrange(a,b)
+=======
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 ```
 
 ### Find a function that removes the initial phase without mouse-movement
@@ -110,18 +141,26 @@ Find a function to remove this “line”.
 
 ```{r}
 m <- mt_exclude_initiation(m)
+<<<<<<< HEAD
 m3 <- mt_exclude_initiation(m3)
+=======
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 ```
 
 Before plotting again (timestamps and xpos) think about how you expect it to look. Then plot it, to see if you were right.
 ```{r}
+<<<<<<< HEAD
 c <- mt_plot(
+=======
+mt_plot(
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
   m, 
   x = 'timestamps', # modifying the x-axis to plot timestamps
   y = 'xpos',       # modifying the y-axis to plot the xpos
   use = 'trajectories',
   color = 'trial_type' 
 )
+<<<<<<< HEAD
 d <- mt_plot(
   m3, 
   x = 'timestamps', # modifying the x-axis to plot timestamps
@@ -130,6 +169,8 @@ d <- mt_plot(
   color = 'trial_type' 
 )
 grid.arrange(c,d,a,b,nrow=2)
+=======
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 ```
 
 
@@ -137,7 +178,10 @@ grid.arrange(c,d,a,b,nrow=2)
 Apply the function “mt_time_normalize”
 ```{r}
 m <- mt_time_normalize(m)
+<<<<<<< HEAD
 m3 <- mt_time_normalize(m3)
+=======
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 ```
 
 Now look at your data variable (the mt object) where a new matrix appeared. What do you notice? What does the function do? After you have thought about it yourself, check the documentation!
@@ -157,6 +201,7 @@ mt_plot(
 ### Play around with the mt_time_normalize() function
 Take a moment to play around with different numbers of steps in “mt_time_normalize” and see how that changes the shape of the trajectories, esp. when using very small numbers. Discuss what the decision about normalizing implies for the data analysis and interpretation. In the end, set the steps back to the default of 101.
 ```{r}
+<<<<<<< HEAD
 #100
 m_tn <- mt_time_normalize(
   m,
@@ -199,10 +244,27 @@ fiveten <- mt_plot(
 grid.arrange(ten,fiveten,hun,nrow=2)
 ```
 
+=======
+m_tn <- mt_time_normalize(
+  m,
+  nsteps = 101
+)
+
+#plot
+mt_plot(
+  m_tn, 
+  use = 'tn_trajectories',
+  color = 'trial_type'
+)
+```
+
+
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 ### Aggregated plots
 Now we want to visualize our “findings”. Find a function that will plot averages of all the “similar” movements and all the “dissimilar” movements.
 Think: Which trajectories do we need to use, the original or the time normalized? Why? Try plotting both to see whether you were right.
 ```{r}
+<<<<<<< HEAD
 e <- mt_plot_aggregate(
   m, 
   use = 'trajectories',
@@ -217,6 +279,21 @@ f <- mt_plot_aggregate(
     ggplot2::ggtitle('Aggregated time-normalized mouse trajectories')
 
 grid.arrange(e,f)
+=======
+mt_plot_aggregate(
+  m, 
+  use = 'trajectories',
+  color = 'trial_type'
+)
+
+mt_plot_aggregate(
+  m, 
+  use = 'tn_trajectories',
+  color = 'trial_type'
+) + 
+  labs(
+    title = 'Aggregated time-normalized mouse trajectories')
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 ```
 
 
@@ -224,12 +301,16 @@ grid.arrange(e,f)
 Apply the function “mt_measures” and look at the outcome in your data variable. 
 ```{r}
 m <- mt_measures(m, use = 'tn_trajectories')
+<<<<<<< HEAD
 m3 <- mt_measures(m3, use = 'tn_trajectories')
+=======
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 ```
 
 ### Aggregating measures
 Now find a function that helps you aggregate some measures of your pleasing over the two trial_types.
 ```{r}
+<<<<<<< HEAD
 mt3_measures_ag <- mt_aggregate(
   m3,
   use = 'measures',
@@ -237,6 +318,8 @@ mt3_measures_ag <- mt_aggregate(
   use2_variables = 'trial_type'
   )
 
+=======
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 mt_measures_ag <- mt_aggregate(
   m,
   use = 'measures',
@@ -250,6 +333,7 @@ mt_measures_ag
 
 ### Interpret the results
 Take a moment to think what these “results” could mean if this was a proper experiment which was not run by your instructor. How would you interpret this? Does this match your hypothesis? Especially look at the MAD (maximum absolute deviation from the direct path), the AUC (area under the curve) and the reaction time. 
+<<<<<<< HEAD
 ```{r}
 #test's for laura
 m_mea3 <- as.data.frame(m3$measures)
@@ -299,6 +383,9 @@ names(dimnames(ttt))
 ttt
 ```
 ### Answer: no difference between trials nor participants... a bit weird but okay.
+=======
+
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 
 
 ## Additional exercises
@@ -314,8 +401,11 @@ m <- mt_subset(
 
 ### Discussion of mt_align
 Would the function ‘mt_align’ be useful for this data? Why or why not?
+<<<<<<< HEAD
 - Nice to lay the trajectories accurately on top of each other, since the experiment is designed to place the mouse in the same starting position every time.
 
+=======
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 It can do the same as mt_remap symmetric, but it can also be used to rescale (here 'space-normalize') the data. 
 
 You could align the starting and end position, as we are only interested in the trajectory of the mouse movement, not the endpoint in it self. Also, because the end point could be anywhere within the stimulus (circle or square), it looks nice to drag the trajectories to the same point. 
@@ -338,4 +428,22 @@ mt_plot(
   m_align, 
   use = 'trajectories',
 )
+<<<<<<< HEAD
 ```
+=======
+```
+
+### ggplot
+As the mt_plot function uses ggplot, you can easily add themes, titles and such to make your plots look nice. Have a go at it!
+```{r}
+mt_plot(
+  m_align, 
+  use = 'trajectories',
+  color = 'trial_type'
+) + 
+  theme_minimal() +
+  labs(title = 'Alligned mouse-tracking data', x = 'Postition (x)', y = 'Postistion(y)', color = 'Trial Type')
+```
+
+
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a

@@ -11,7 +11,11 @@ The documentation for the package can be found here: <https://www.rdocumentation
 
 Use this page to solve the following steps by finding and applying appropriate mousetrap functions. Also, writing ?function_name() in the console is great way of reading about the function in question.
 
+<<<<<<< HEAD
 Call me for help whenever you get stuck (or take a quick look in the solutions file) :-)
+=======
+Call me for help whenever you get stuck (or take a quick look in the solutions file) :D
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
 
 
 ### Install packages and load in the data
@@ -117,3 +121,13 @@ Would the function ‘mt_align’ be useful for this data? Why or why not?
 
 ```
 
+<<<<<<< HEAD
+=======
+
+### ggplot
+As the mt_plot function uses ggplot, you can easily add themes, titles and such to make your plots look nice. Have a go at it!
+```{r}
+
+```
+
+>>>>>>> 451bec789a2e73428b2797bb8af1297cd068bc5a
